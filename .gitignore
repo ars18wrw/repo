@@ -1,6 +1,5 @@
 *.suo
 *.sdf
-*.vcxproj.filters
 *.exe
 *.ilk
 *.pdb
