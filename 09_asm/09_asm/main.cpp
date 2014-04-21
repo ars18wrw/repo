@@ -5,40 +5,57 @@ int main()
 	int n, i, ans = 0;
 	std::cin >> n;
 	BYTE * arr = new BYTE[n + 1];
-
-	for (int i = 0; i <= n; ++i)
-		arr[i] = 1;
-	arr[0] = arr[1] = 0;
-
 	_asm
 	{
+		; filling array
+		mov ecx, n
+		mov esi, arr
+	fillArr:
+		mov byte ptr[esi], 1
+		inc esi
+	loop fillArr
+		mov esi, arr
+		mov byte ptr[esi], 0
+		inc esi
+		mov byte ptr[esi], 0
+
+
 		mov i, 2
-		begin:
+	begin:
 		mov eax, i
-			mul i
-			cmp eax, n
-			jg _end
-			mov esi, i
-			cmp arr[esi], 0
-			je _next
-			mov eax, i
-			add eax, i
-		cycle :
+		mul i
 		cmp eax, n
-			jg _next
-			mov esi, arr
-			add esi, eax
-			mov byte ptr[esi], 0
-			add eax, i
-			jmp cycle
-		_next :
+		jg _end
+		mov esi, i
+		cmp arr[esi], 0
+		je _next
+		mov eax, i
+		add eax, i
+	cycle :
+		cmp eax, n
+		jg _next
+		mov esi, arr
+		add esi, eax
+		mov byte ptr[esi], 0
+		add eax, i
+		jmp cycle
+	_next :
 		inc i
-			jmp begin
-		_end :
+		jmp begin
+	_end :
+
+		; counting
+		mov esi, arr
+		mov ecx, n
+		countAns:
+		cmp byte ptr[esi], 0
+		je fail
+		inc ans
+	fail: 
+		inc esi
+		loop countAns
+
 	}
-	for (int i = 0; i <= n; ++i)
-		if (arr[i])
-			++ans;
 	std::cout << ans;
 	return 0;
 }
