@@ -1,7 +1,7 @@
 #include<iostream>
 int main()
 {
-	int max1, max2, max3, min1, min2, cur, i = 0, n = 0;
+	int max1, max2, max3, min1, min2, n = 0;
 	int arr[100];
 	while (std::cin >> arr[n++]);
 	--n;
