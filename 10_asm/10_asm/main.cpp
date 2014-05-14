@@ -17,7 +17,7 @@ int main()
 		; // n>0
 		mov ecx, n
 		cmp ecx, 0
-		je _zero_end
+		je _end
 
 	_for:
 		; //some work with the "highest" item
@@ -38,10 +38,7 @@ int main()
 	loop _for
 		jmp _end
 	
-	_zero_end:
-		fldz
-		fxch st(2)
-	
+
 	_end:
 		fxch st(2)
 		fst ans
