@@ -81,7 +81,7 @@ int main()
 
 		; working with results
 		cmp max1, 0
-		jle _exit
+		jle _exit_asm
 		
 		mov eax, min1
 		imul min2
