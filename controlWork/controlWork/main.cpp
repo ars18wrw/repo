@@ -172,6 +172,8 @@ void matrix(int n)
 		mov ebx, n		
 		mul ebx
 		sub arr2, eax
+		mov ebx, [arr1]
+		mov ecx, [arr2]
 
 
 		xor edi, edi
