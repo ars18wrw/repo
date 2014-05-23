@@ -112,9 +112,8 @@ void matrix(int n)
 		std::cin >> arr2[j][i];
 
 	int *ans = new int[n*n];
-	int *temp = ans;
 
-	int proz = 0;
+	int proz = 0, strs = 0;
 	_asm
 	{
 		xor esi, esi
@@ -126,6 +125,7 @@ void matrix(int n)
 	__cycle:
 		cmp edi, n
 			je __theend
+		__cont:
 			inc edi
 			mov ebx, [ebx]
 			mov ecx, [ecx]
@@ -148,7 +148,6 @@ void matrix(int n)
 			mov eax, 0
 			mov proz, eax
 			add ans, 4
-			add arr1, 4
 			add arr2, 4
 			xor esi, esi
 			mov ebx, [arr1]
@@ -158,10 +157,24 @@ void matrix(int n)
 
 
 	__theend:
+		push eax
+		mov eax, strs
+		cmp eax, n
+		je __realend
+		mov eax, 1
+		add strs, eax
+		pop eax
+		add arr1, 4
+		xor edi, edi
+		jmp __cont
+
+
+	__realend:
 		mov eax, n
+		mul eax
 		mov ebx, 4
 		mul ebx
-	;	sub ans, eax
+		sub ans, eax
 	}
 	std::cout << ans[0];
 
