@@ -111,7 +111,7 @@ void matrix(int n)
 	for (int j = 0; j < n; ++j)
 		std::cin >> arr2[j][i];
 
-	int *ans = new int[n*n];
+	int *ans = new int[n*n+1];
 
 	int proz = 0, strs = 1;
 	_asm
