@@ -165,6 +165,15 @@ void matrix(int n)
 		add strs, eax
 		pop eax
 		add arr1, 4
+
+		push eax
+		push ebx
+		mov eax, 4
+		mov ebx, n		
+		mul ebx
+		sub arr2, eax
+
+
 		xor edi, edi
 		jmp __cont
 
