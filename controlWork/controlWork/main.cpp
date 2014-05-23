@@ -113,7 +113,7 @@ void matrix(int n)
 
 	int *ans = new int[n*n];
 
-	int proz = 0, strs = 0;
+	int proz = 0, strs = 1;
 	_asm
 	{
 		xor esi, esi
