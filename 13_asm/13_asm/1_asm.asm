@@ -104,4 +104,25 @@ loop @box_check
 	pop ebp
 	ret
 _Check endp
+
+PUBLIC @Answer@4
+.code
+@Answer@4 proc
+	mov esi, ecx
+	mov ecx, 81
+@cycle:
+	cmp dword ptr [esi], 0
+	je @badret
+
+loop @cycle
+	mov eax, 1
+	jmp @theend
+@badret: 
+	xor eax, eax	
+@theend:	
+	ret
+@Answer@4 endp
+
+
+
 end

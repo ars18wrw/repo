@@ -85,4 +85,29 @@ _Guess proc
 	pop ebp
 	ret
 _Guess endp
+
+
+PUBLIC @Prelude@4
+.code
+@Prelude@4 proc
+	mov esi, ecx
+	mov ecx, 81
+@cycle:
+	cmp dword ptr [esi], 0
+	jl @badret
+	cmp dword ptr [esi], 9
+	jg @badret
+	add esi, 4
+loop @cycle
+	mov eax, 1
+	jmp @theend
+@badret: 
+	xor eax, eax	
+@theend:	
+	ret
+@Prelude@4 endp
+
+
+
+
 end

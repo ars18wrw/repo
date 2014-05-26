@@ -23,16 +23,8 @@
     <MASM Include="1_asm.asm">
       <Filter>Файлы исходного кода</Filter>
     </MASM>
-    <MASM Include="2_asm.asm">
-      <Filter>Файлы исходного кода</Filter>
-    </MASM>
     <MASM Include="4_asm.asm">
       <Filter>Файлы исходного кода</Filter>
     </MASM>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="3_asm.asm">
-      <Filter>Файлы исходного кода</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -85,13 +85,7 @@
     <MASM Include="1_asm.asm">
       <FileType>Document</FileType>
     </MASM>
-    <MASM Include="2_asm.asm">
-      <FileType>Document</FileType>
-    </MASM>
     <MASM Include="4_asm.asm" />
-    <None Include="3_asm.asm">
-      <FileType>Document</FileType>
-    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
