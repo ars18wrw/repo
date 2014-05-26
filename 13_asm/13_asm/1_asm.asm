@@ -9,7 +9,7 @@ _Check proc
 	push esi
 	push edi
 	push ecx
-	
+
 	mov ebx, [ebp+12]
 
 
@@ -17,6 +17,8 @@ _Check proc
 	; ROW CHECK
 	mov esi, [ebp+8]
 	mov eax, [ebp+16]
+	mov ecx, 4
+	mul ecx
 	mov ecx, 9
 	mul ecx; eax = row 
 	add esi, eax
@@ -25,10 +27,12 @@ _Check proc
 	je @num_fail
 	add esi, 4
 loop @row_check
-	
+
 	; COLUMN CHECK
 	mov esi, [ebp+8]
 	mov eax, [ebp+20]
+	mov ecx, 4
+	mul ecx
 	add esi, eax
 	mov ecx, 9
 @col_check:
@@ -47,7 +51,9 @@ loop @col_check
 	cdq
 	div ecx ; edx = col%3
 	sub edi, edx
-	add esi, edi
+	mov eax, 4
+	mul edi
+	add esi, eax
 
 
 	mov eax, [ebp+16] ; eax = row
@@ -56,9 +62,11 @@ loop @col_check
 	cdq
 	div ecx ; edx = row % 3
 	sub edi, edx
-	
+
 	mov eax, 9
 	mul edi
+	mov ecx, 4
+	mul ecx
 	add esi, eax 
 
 	; BOX CHECK
@@ -68,11 +76,15 @@ loop @col_check
 	mov ecx, 3
 	@box_row_check:
 		cmp dword ptr[esi], ebx
-		je @num_fail
+		jne @cont
+		pop ecx
+		jmp @num_fail
+
+	@cont:
 		add esi, 4
 	loop @box_row_check
 	pop ecx
-	add esi, 6 ; 9 - 3
+	add esi, 24 ; (9 - 3)*4
 loop @box_check
 
 	xor eax, eax
